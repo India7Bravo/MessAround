@@ -37,4 +37,18 @@ describe('It visits the todo website', () => {
         .parents('li')
         .should('have.class', 'completed')
     })
+
+    // It clears the completed list items and makes sure the list is empty
+    it("Checks that there's a completed item in the completed list, delete it and go back to the home screen", () => {
+
+        cy.contains('Completed').click()
+  
+        cy.get('.todo-list li')
+          .should('have.length', 1)
+          .first()
+          .should('have.text', 'Fkn owning this sh*t')
+  
+        cy.contains('Attempting to own this shit').should('not.exist')
+        cy.contains('Another test to try out').should('not.exist')
+      })
 })
